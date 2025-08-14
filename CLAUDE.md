@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Sera is a Flutter cross-platform application that supports Android, iOS, Web, macOS, Windows, and Linux platforms. Currently using Flutter SDK >=3.8.1 <4.0.0 with Dart language.
+Sera is a Flutter cross-platform application that supports Android, iOS, and Web platforms. Currently using Flutter SDK >=3.8.1 <4.0.0 with Dart language.
 
 ## Essential Commands
 
@@ -12,7 +12,6 @@ Sera is a Flutter cross-platform application that supports Android, iOS, Web, ma
 ```bash
 flutter run                    # Run the app in debug mode
 flutter run -d chrome         # Run on web browser
-flutter run -d macos          # Run on macOS
 flutter run --release         # Run in release mode
 ```
 
@@ -28,9 +27,6 @@ flutter test --name "Counter increments"  # Run test by name pattern
 flutter build apk             # Build Android APK
 flutter build ios             # Build iOS (requires macOS with Xcode)
 flutter build web             # Build for web deployment
-flutter build macos           # Build macOS app
-flutter build windows         # Build Windows app
-flutter build linux           # Build Linux app
 ```
 
 ### Code Quality
@@ -52,9 +48,6 @@ sera/
 ├── android/                 # Android-specific configuration
 ├── ios/                     # iOS-specific configuration  
 ├── web/                     # Web-specific configuration
-├── macos/                   # macOS-specific configuration
-├── windows/                 # Windows-specific configuration
-├── linux/                   # Linux-specific configuration
 └── pubspec.yaml            # Flutter dependencies and metadata
 ```
 
@@ -73,8 +66,6 @@ State management uses Flutter's built-in setState method. For more complex featu
 - **Android**: Minimum SDK 21, target SDK 35, uses Material 3 design
 - **iOS**: Deployment target 12.0, configured for both iPhone and iPad
 - **Web**: PWA-enabled with manifest.json and service worker
-- **macOS**: Deployment target 10.14, sandboxing disabled for development
-- **Windows/Linux**: Standard desktop configurations
 
 ## Development Considerations
 
