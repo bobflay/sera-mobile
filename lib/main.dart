@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -210,7 +211,14 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
           color: Colors.white.withOpacity(0.9),
           size: 22,
         ),
-        onPressed: () {},
+        onPressed: () async {
+          if (icon == Icons.language) {
+            final Uri url = Uri.parse('https://sera.xpertbot.online');
+            if (await canLaunchUrl(url)) {
+              await launchUrl(url, mode: LaunchMode.externalApplication);
+            }
+          }
+        },
       ),
     );
   }
