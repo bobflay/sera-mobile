@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Theme.of(context).colorScheme.primary.withOpacity(0.8),
+              Theme.of(context).colorScheme.primary.withValues(alpha: 0.8),
               Theme.of(context).colorScheme.secondary,
             ],
           ),
@@ -103,10 +103,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                             height: 120,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.white.withOpacity(0.9),
+                              color: Colors.white.withValues(alpha: 0.9),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
+                                  color: Colors.black.withValues(alpha: 0.1),
                                   blurRadius: 30,
                                   spreadRadius: 5,
                                 ),
@@ -128,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                               letterSpacing: 8,
                               shadows: [
                                 Shadow(
-                                  color: Colors.black.withOpacity(0.2),
+                                  color: Colors.black.withValues(alpha: 0.2),
                                   offset: const Offset(2, 2),
                                   blurRadius: 4,
                                 ),
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w300,
-                              color: Colors.white.withOpacity(0.95),
+                              color: Colors.white.withValues(alpha: 0.95),
                               letterSpacing: 4,
                             ),
                           ),
@@ -152,10 +152,10 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                               vertical: 16,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.1),
+                              color: Colors.white.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(30),
                               border: Border.all(
-                                color: Colors.white.withOpacity(0.2),
+                                color: Colors.white.withValues(alpha: 0.2),
                                 width: 1,
                               ),
                             ),
@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
                               'Something amazing is on the way',
                               style: TextStyle(
                                 fontSize: 16,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withValues(alpha: 0.9),
                                 fontWeight: FontWeight.w400,
                               ),
                               textAlign: TextAlign.center,
@@ -199,16 +199,16 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       height: 48,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.white.withOpacity(0.1),
+        color: Colors.white.withValues(alpha: 0.1),
         border: Border.all(
-          color: Colors.white.withOpacity(0.3),
+          color: Colors.white.withValues(alpha: 0.3),
           width: 1,
         ),
       ),
       child: IconButton(
         icon: Icon(
           icon,
-          color: Colors.white.withOpacity(0.9),
+          color: Colors.white.withValues(alpha: 0.9),
           size: 22,
         ),
         onPressed: () async {

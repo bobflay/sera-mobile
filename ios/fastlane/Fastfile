@@ -1,0 +1,82 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and upload to TestFlight with automatic distribution to all internal groups"
+  lane :beta do
+    # Ensure we're on a clean git status
+    ensure_git_status_clean
+    
+    # Increment build number
+    increment_build_number(
+      build_number: latest_testflight_build_number + 1,
+      xcodeproj: "Runner.xcodeproj"
+    )
+    
+    # Build the app
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "Runner",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.example.sera" => "match AppStore com.example.sera"
+        }
+      }
+    )
+    
+    # Upload to TestFlight and distribute to all internal groups
+    upload_to_testflight(
+      # Automatically distribute to internal testers
+      distribute_external: false,
+      
+      # List all your internal testing groups here
+      # Update these with your actual group names
+      groups: [
+        "Internal Testers",
+        "QA Team", 
+        "Development Team",
+        "Management",
+        "Beta Testers"
+      ],
+      
+      # Notify testers about the new build
+      notify_external_testers: false,
+      
+      # Add changelog for this build
+      changelog: "Bug fixes and improvements",
+      
+      # Skip waiting for build processing
+      skip_waiting_for_build_processing: false,
+      
+      # Skip submission (for internal testing only)
+      skip_submission: true,
+      
+      # Automatically submit for review (set to true if needed)
+      submit_beta_review: false
+    )
+    
+    # Commit the version bump
+    commit_version_bump(
+      message: "Version bump for TestFlight build",
+      xcodeproj: "Runner.xcodeproj"
+    )
+    
+    # Push to git
+    push_to_git_remote
+    
+    # Send notification (optional)
+    slack(
+      message: "New build uploaded to TestFlight and distributed to all internal groups! 🚀",
+      slack_url: ENV["SLACK_URL"] # Set this in your CI environment
+    ) if ENV["SLACK_URL"]
+  end
+  
+  desc "Download dSYMs from TestFlight"
+  lane :download_dsyms do
+    download_dsyms(
+      version: get_version_number(xcodeproj: "Runner.xcodeproj"),
+      build_number: get_build_number(xcodeproj: "Runner.xcodeproj")
+    )
+    upload_symbols_to_crashlytics # If using Crashlytics
+  end
+end
